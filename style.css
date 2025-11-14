@@ -2,7 +2,7 @@
 header {
     background-color: transparent;
     color: #fff;
-    padding: 15px 0;
+    padding: 20px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -55,7 +55,6 @@ nav {
     min-width: 0;
     margin-right: 30px;
     max-width: 50%;
-    position: relative;
 }
 
 nav ul {
@@ -497,29 +496,6 @@ footer {
     color: #ffffff !important;
 }
 
-/* Мобильное меню */
-.mobile-menu-toggle {
-    display: none;
-    flex-direction: column;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-    width: 30px;
-    height: 25px;
-    position: relative;
-}
-
-.mobile-menu-toggle span {
-    display: block;
-    height: 3px;
-    width: 100%;
-    background-color: #fff;
-    margin: 3px 0;
-    transition: 0.3s;
-    border-radius: 2px;
-}
-
 /* Улучшение отзывчивости для мобильных устройств */
 @media (max-width: 1200px) {
     .site-title {
@@ -562,84 +538,71 @@ footer {
 }
 
 @media (max-width: 768px) {
+    /* Исправления для мобильной версии */
+    body::before {
+        height: 180px; /* Увеличиваем высоту синего фона для мобильных */
+    }
+    
     header {
-        flex-wrap: wrap;
+        flex-direction: column;
         padding: 10px 0;
-        position: relative;
+        align-items: center;
+        height: auto;
     }
     
     .logo {
         order: 1;
-        margin-bottom: 0;
+        margin: 0;
+        margin-bottom: 10px;
     }
     
     .logo img {
-        margin-left: 20px;
+        margin-left: 0;
         margin-bottom: 0;
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
     }
     
     .site-title {
-        order: 3;
-        width: 100%;
+        order: 2;
+        margin: 0;
+        margin-bottom: 15px;
         text-align: center;
-        margin: 10px auto 0 auto;
         font-size: 18px;
-        margin-bottom: 0;
-        margin-right: 0;
+        white-space: normal;
     }
     
     nav {
-        order: 2;
-        margin-right: 20px;
-        max-width: none;
-    }
-    
-    .mobile-menu-toggle {
-        display: flex;
-    }
-    
-    .nav-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background-color: #5146c9;
-        width: 200px;
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        margin-bottom: 0;
-        flex-direction: column;
-        padding: 10px 0;
-        z-index: 1000;
-    }
-    
-    .nav-menu.active {
-        display: flex;
-    }
-    
-    .nav-menu li {
+        order: 3;
+        margin-right: 0;
+        max-width: 100%;
         width: 100%;
-        margin: 0;
     }
     
-    .nav-menu a {
-        display: block;
-        padding: 12px 20px;
-        font-size: 14px;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
+    nav ul {
+        margin-bottom: 0;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 0 10px;
     }
     
-    .nav-menu a:hover {
-        background-color: rgba(255,255,255,0.1);
+    nav li {
+        margin-bottom: 5px;
+    }
+    
+    nav a {
+        font-size: 12px;
+        padding: 4px 8px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
     }
     
     .slider-container {
         width: 100%;
         margin-left: 0;
-        height: 400px;
-        margin-top: -150px;
+        height: 300px;
+        margin-top: 20px; /* Добавляем отступ сверху чтобы слайдер не перекрывал шапку */
     }
     
     .column-container, .column-container1 {
@@ -654,41 +617,35 @@ footer {
     .column1 img {
         height: 200px;
     }
-    
-    body::before {
-        height: 120px;
-    }
 }
 
 @media (max-width: 576px) {
-    header {
-        padding: 8px 0;
-    }
-    
-    .logo img {
-        margin-left: 15px;
-        width: 40px;
-        height: 40px;
+    body::before {
+        height: 200px; /* Еще больше увеличиваем высоту для очень маленьких экранов */
     }
     
     .site-title {
         font-size: 16px;
-        margin-top: 8px;
+        margin-bottom: 10px;
+        padding: 0 10px;
     }
     
-    .mobile-menu-toggle {
-        width: 25px;
-        height: 20px;
-        margin-right: 15px;
+    .logo img {
+        width: 50px;
+        height: 50px;
     }
     
-    .nav-menu {
-        width: 180px;
+    nav ul {
+        gap: 5px;
+    }
+    
+    nav a {
+        font-size: 11px;
+        padding: 3px 6px;
     }
     
     .slider-container {
-        height: 300px;
-        margin-top: -100px;
+        height: 250px;
     }
     
     .text_o_nas {
@@ -697,43 +654,26 @@ footer {
     }
     
     .name {
-        font-size: 28px;
+        font-size: 30px;
         margin-top: 50px;
-    }
-    
-    body::before {
-        height: 100px;
     }
 }
 
-@media (max-width: 480px) {
-    .logo img {
-        margin-left: 10px;
-        width: 35px;
-        height: 35px;
+@media (max-width: 400px) {
+    body::before {
+        height: 220px; /* Максимальная высота для самых маленьких экранов */
     }
     
     .site-title {
         font-size: 14px;
     }
     
-    .mobile-menu-toggle {
-        margin-right: 10px;
+    nav a {
+        font-size: 10px;
+        padding: 2px 4px;
     }
     
     .slider-container {
-        height: 250px;
-    }
-    
-    .text_o_nas {
-        font-size: 14px;
-    }
-    
-    .name {
-        font-size: 24px;
-    }
-    
-    body::before {
-        height: 90px;
+        height: 200px;
     }
 }
