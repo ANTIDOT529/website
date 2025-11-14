@@ -598,11 +598,14 @@ footer {
         border-radius: 4px;
     }
     
+    /* ИСПРАВЛЕНИЕ: Слайдер ниже шапки и не заходит на нее */
     .slider-container {
+        position: relative;
         width: 100%;
         margin-left: 0;
         height: 300px;
         margin-top: 20px; /* Добавляем отступ сверху чтобы слайдер не перекрывал шапку */
+        z-index: 1; /* Убеждаемся, что слайдер ниже шапки */
     }
     
     .column-container, .column-container1 {
@@ -646,6 +649,7 @@ footer {
     
     .slider-container {
         height: 250px;
+        margin-top: 20px; /* Сохраняем отступ сверху */
     }
     
     .text_o_nas {
@@ -675,5 +679,6 @@ footer {
     
     .slider-container {
         height: 200px;
+        margin-top: 20px; /* Сохраняем отступ сверху */
     }
 }
