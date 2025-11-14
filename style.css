@@ -537,8 +537,9 @@ footer {
     }
 }
 
-@media (max-width: 768px) {
-    /* Исправления для мобильной версии */
+/* Вертикальная ориентация мобильных устройств */
+@media (max-width: 768px) and (orientation: portrait) {
+    /* Исправления для мобильной версии в вертикальной ориентации */
     body::before {
         height: 180px; /* Увеличиваем высоту синего фона для мобильных */
     }
@@ -548,6 +549,7 @@ footer {
         padding: 10px 0;
         align-items: center;
         height: auto;
+        min-height: 150px; /* Гарантируем достаточную высоту шапки */
     }
     
     .logo {
@@ -570,6 +572,7 @@ footer {
         text-align: center;
         font-size: 18px;
         white-space: normal;
+        margin-bottom: 371px; /* Сохраняем оригинальный отступ для структуры */
     }
     
     nav {
@@ -585,6 +588,7 @@ footer {
         flex-wrap: wrap;
         gap: 8px;
         padding: 0 10px;
+        margin-bottom: 350px; /* Сохраняем оригинальный отступ для структуры */
     }
     
     nav li {
@@ -598,13 +602,13 @@ footer {
         border-radius: 4px;
     }
     
-    /* ИСПРАВЛЕНИЕ: Слайдер ниже шапки и не заходит на нее */
+    /* ИСПРАВЛЕНИЕ: Слайдер ниже шапки и не заходит на нее в вертикальной ориентации */
     .slider-container {
         position: relative;
         width: 100%;
         margin-left: 0;
         height: 300px;
-        margin-top: 20px; /* Добавляем отступ сверху чтобы слайдер не перекрывал шапку */
+        margin-top: 30px; /* Достаточный отступ сверху чтобы слайдер не перекрывал шапку */
         z-index: 1; /* Убеждаемся, что слайдер ниже шапки */
     }
     
@@ -622,7 +626,17 @@ footer {
     }
 }
 
-@media (max-width: 576px) {
+/* Горизонтальная ориентация мобильных устройств (планшеты) */
+@media (max-width: 768px) and (orientation: landscape) {
+    .slider-container {
+        width: 100%;
+        margin-left: 0;
+        height: 400px;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 576px) and (orientation: portrait) {
     body::before {
         height: 200px; /* Еще больше увеличиваем высоту для очень маленьких экранов */
     }
@@ -631,6 +645,7 @@ footer {
         font-size: 16px;
         margin-bottom: 10px;
         padding: 0 10px;
+        margin-bottom: 371px; /* Сохраняем структуру */
     }
     
     .logo img {
@@ -640,6 +655,7 @@ footer {
     
     nav ul {
         gap: 5px;
+        margin-bottom: 350px; /* Сохраняем структуру */
     }
     
     nav a {
@@ -649,7 +665,7 @@ footer {
     
     .slider-container {
         height: 250px;
-        margin-top: 20px; /* Сохраняем отступ сверху */
+        margin-top: 25px; /* Сохраняем отступ сверху */
     }
     
     .text_o_nas {
@@ -663,13 +679,14 @@ footer {
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 400px) and (orientation: portrait) {
     body::before {
         height: 220px; /* Максимальная высота для самых маленьких экранов */
     }
     
     .site-title {
         font-size: 14px;
+        margin-bottom: 371px; /* Сохраняем структуру */
     }
     
     nav a {
@@ -677,8 +694,23 @@ footer {
         padding: 2px 4px;
     }
     
+    nav ul {
+        margin-bottom: 350px; /* Сохраняем структуру */
+    }
+    
     .slider-container {
         height: 200px;
-        margin-top: 20px; /* Сохраняем отступ сверху */
+        margin-top: 25px; /* Сохраняем отступ сверху */
+    }
+}
+
+/* Стили для десктопной версии остаются без изменений */
+@media (min-width: 769px) {
+    /* Все оригинальные стили сохраняются для десктопной версии */
+    .slider-container {
+        width: 120.15%;
+        height: 600px;
+        margin-left: -130px;
+        margin-top: -300px; /* Оригинальное значение для десктопа */
     }
 }
