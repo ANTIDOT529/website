@@ -3,6 +3,47 @@ let currentCaptcha = '';
 let slideIndex = 0;
 let slideInterval;
 
+// === МОБИЛЬНОЕ МЕНЮ ===
+
+function initMobileMenu() {
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const mainNav = document.querySelector('nav');
+    
+    if (mobileMenuToggle && mainNav) {
+        mobileMenuToggle.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+            
+            // Меняем иконку меню
+            if (mainNav.classList.contains('active')) {
+                this.innerHTML = '✕';
+                this.setAttribute('aria-label', 'Закрыть меню');
+            } else {
+                this.innerHTML = '☰';
+                this.setAttribute('aria-label', 'Открыть меню');
+            }
+        });
+        
+        // Закрытие меню при клике на ссылку
+        const navLinks = mainNav.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mainNav.classList.remove('active');
+                mobileMenuToggle.innerHTML = '☰';
+                mobileMenuToggle.setAttribute('aria-label', 'Открыть меню');
+            });
+        });
+        
+        // Закрытие меню при клике вне его области
+        document.addEventListener('click', function(e) {
+            if (!mainNav.contains(e.target) && !mobileMenuToggle.contains(e.target) && mainNav.classList.contains('active')) {
+                mainNav.classList.remove('active');
+                mobileMenuToggle.innerHTML = '☰';
+                mobileMenuToggle.setAttribute('aria-label', 'Открыть меню');
+            }
+        });
+    }
+}
+
 // === ФУНКЦИИ ВАЛИДАЦИИ ФОРМЫ ===
 
 // Валидация имени
@@ -270,38 +311,26 @@ function initFormValidation() {
     }
     
     // Обработчик отправки формы (ИМИТАЦИЯ ОТПРАВКИ)
-    // Обработчик отправки формы (РЕАЛЬНАЯ ОТПРАВКА)
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        if (validateForm()) {
-            const submitBtn = this.querySelector('.bot-send-mail');
-            const originalText = submitBtn.value;
-            submitBtn.value = 'Отправка...';
-            submitBtn.disabled = true;
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            // Сбор данных формы
-            const formData = new FormData(this);
-            
-            // Добавляем капчу для проверки на сервере (если нужно)
-            formData.append('captcha_user', document.getElementById('captcha-input').value);
-            
-            // AJAX отправка на сервер
-            fetch('send_email.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Ошибка сети');
-                }
-                return response.text();
-            })
-            .then(data => {
-                if (data === 'success') {
-                    // Успешная отправка
+            if (validateForm()) {
+                const submitBtn = this.querySelector('.bot-send-mail');
+                const originalText = submitBtn.value;
+                submitBtn.value = 'Отправка...';
+                submitBtn.disabled = true;
+                
+                // ИМИТАЦИЯ ОТПРАВКИ ФОРМЫ
+                console.log('Имитация отправки формы с данными:');
+                console.log('Имя:', document.querySelector('input[name="name"]').value);
+                console.log('Телефон:', document.querySelector('input[name="phone"]').value);
+                console.log('Сообщение:', document.querySelector('input[name="message"]').value);
+                
+                // Имитация задержки сети
+                setTimeout(function() {
+                    // Успешная "отправка"
                     alert('Форма успешно отправлена! Мы свяжемся с вами в ближайшее время.');
                     
                     // Очистка формы
@@ -318,25 +347,16 @@ if (contactForm) {
                         messageCounter.textContent = '0/500 символов';
                         messageCounter.style.color = '#ccc';
                     }
-                } else {
-                    // Ошибка от сервера
-                    alert('Ошибка при отправке: ' + data);
-                }
-            })
-            .catch(error => {
-                // Ошибка сети
-                alert('Ошибка сети: ' + error.message + '. Пожалуйста, попробуйте позже.');
-            })
-            .finally(() => {
-                // Восстанавливаем кнопку в любом случае
-                submitBtn.value = originalText;
-                submitBtn.disabled = false;
-            });
-        } else {
-            alert('Пожалуйста, исправьте ошибки в форме.');
-        }
-    });
-}
+                    
+                    // Восстанавливаем кнопку
+                    submitBtn.value = originalText;
+                    submitBtn.disabled = false;
+                }, 1500); // Имитация задержки отправки
+            } else {
+                alert('Пожалуйста, исправьте ошибки в форме.');
+            }
+        });
+    }
 }
 
 // === ПЕРВЫЙ СЛАЙДЕР ===
@@ -520,10 +540,11 @@ document.addEventListener('DOMContentLoaded', function() {
     initFormValidation();
     initScrollToTop();
     initSmoothScroll();
+    initMobileMenu();
     
     console.log('All components initialized');
 });
 
 // Глобальные функции для полноэкранного режима
 window.openFullscreenImage = openFullscreenImage;
-window.closeFullscreenImage = closeFullscreenImage;Ы
+window.closeFullscreenImage = closeFullscreenImage;
