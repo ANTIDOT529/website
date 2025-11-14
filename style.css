@@ -603,15 +603,17 @@ footer {
         border-radius: 4px;
     }
     
-    /* ИСПРАВЛЕНИЕ: Слайдер ниже шапки и не заходит на нее в вертикальной ориентации */
+    /* ИСПРАВЛЕНИЕ: Слайдер растянут на всю ширину экрана */
     .slider-container {
         position: relative;
-        width: 100%;
-        margin-left: 0;
+        width: 100vw; /* 100% от ширины viewport */
+        margin-left: calc(-50vw + 50%); /* Центрируем слайдер относительно body */
         height: 300px;
         margin-top: 75px; /* 25% от высоты слайдера (300px * 0.25 = 75px) */
         margin-bottom: 75px; /* 25% от высоты слайдера (300px * 0.25 = 75px) */
         z-index: 1; /* Убеждаемся, что слайдер ниже шапки */
+        left: 0;
+        right: 0;
     }
     
     /* Устанавливаем одинаковые отступы для заголовка "о нашей студии" */
@@ -636,11 +638,13 @@ footer {
 /* Горизонтальная ориентация мобильных устройств (планшеты) */
 @media (max-width: 768px) and (orientation: landscape) {
     .slider-container {
-        width: 100%;
-        margin-left: 0;
+        width: 100vw; /* 100% от ширины viewport */
+        margin-left: calc(-50vw + 50%); /* Центрируем слайдер относительно body */
         height: 400px;
         margin-top: 100px; /* 25% от высоты слайдера (400px * 0.25 = 100px) */
         margin-bottom: 100px; /* 25% от высоты слайдера (400px * 0.25 = 100px) */
+        left: 0;
+        right: 0;
     }
     
     .text_o_nas {
@@ -676,9 +680,13 @@ footer {
     }
     
     .slider-container {
+        width: 100vw; /* 100% от ширины viewport */
+        margin-left: calc(-50vw + 50%); /* Центрируем слайдер относительно body */
         height: 250px;
         margin-top: 62.5px; /* 25% от высоты слайдера (250px * 0.25 = 62.5px) */
         margin-bottom: 62.5px; /* 25% от высоты слайдера (250px * 0.25 = 62.5px) */
+        left: 0;
+        right: 0;
     }
     
     .text_o_nas {
@@ -713,9 +721,13 @@ footer {
     }
     
     .slider-container {
+        width: 100vw; /* 100% от ширины viewport */
+        margin-left: calc(-50vw + 50%); /* Центрируем слайдер относительно body */
         height: 200px;
         margin-top: 50px; /* 25% от высоты слайдера (200px * 0.25 = 50px) */
         margin-bottom: 50px; /* 25% от высоты слайдера (200px * 0.25 = 50px) */
+        left: 0;
+        right: 0;
     }
     
     .text_o_nas {
@@ -732,6 +744,8 @@ footer {
         margin-left: -130px;
         margin-top: -300px; /* Оригинальное значение для десктопа */
         margin-bottom: 0; /* Сбрасываем отступ снизу для десктопа */
+        left: auto;
+        right: auto;
     }
     
     .text_o_nas {
